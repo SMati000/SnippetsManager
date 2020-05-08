@@ -1,6 +1,7 @@
 package comandos;
 
 import central_office.Instruccion;
+import java.util.Scanner;
 
 public abstract class Comandos {
     protected final String HELP = "Consulte la ayuda especifica del comando o la ayuda general con el comando help";
@@ -14,6 +15,17 @@ public abstract class Comandos {
     
     public Comandos(Instruccion instruccion) {
         this.instruccion = instruccion;
+    }
+    
+    public Object pedirDatos(String mensaje, Object variable) {
+        if(variable == null) {
+            Scanner in = new Scanner(System.in);
+        
+            System.out.print(mensaje);
+            variable = in.nextLine();
+        }
+        
+        return variable;
     }
     
     public void help() {
