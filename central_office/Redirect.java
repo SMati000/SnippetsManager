@@ -35,6 +35,9 @@ public class Redirect {
             case "move":
                 redirect = new Move(instrucciones);
                 break;
+            case "rename":
+                redirect = new Rename(instrucciones);
+                break;
             case "export":
                 redirect = new Export(instrucciones);
                 break;

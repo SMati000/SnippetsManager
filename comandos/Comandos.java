@@ -1,5 +1,6 @@
 package comandos;
 
+import backend.Ficheros;
 import central_office.Instruccion;
 import java.util.Scanner;
 
@@ -18,11 +19,11 @@ public abstract class Comandos {
     }
     
     public Object pedirDatos(String mensaje, Object variable) {
-        if(variable == null) {
+        if(variable == null || variable.toString().isEmpty()) {
             Scanner in = new Scanner(System.in);
         
             System.out.print(mensaje);
-            variable = in.nextLine();
+            variable = Ficheros.eliminarComillas(in.nextLine());
         }
         
         return variable;
