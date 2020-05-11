@@ -4,6 +4,7 @@ import backend.Ficheros;
 import central_office.Instruccion;
 import central_office.ParametrosYArgumentos;
 import central_office.Redirect;
+import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -36,6 +37,9 @@ public class Help extends Comandos implements Redirecter {
                         break;
                     case "-else":
                         listCommands();
+                        break;
+                    case "-html":
+                        HtmlHelp(paramYArg.getArgumento());
                         break;
                     default:
                         commandHelp(paramYArg.getParametro());
@@ -103,8 +107,8 @@ public class Help extends Comandos implements Redirecter {
         }
     }
 
-    private void listCommands() {
-        String[] lista = {"[Rename]"};
+    public void listCommands() {
+        String[] lista = {"[rename]"};
         
         System.out.println("\n______________________________________________");
         
@@ -126,6 +130,29 @@ public class Help extends Comandos implements Redirecter {
         System.out.println("______________________________________________\n");
     }
     
+    
+
+    private void HtmlHelp(String comando) {
+        comando = pedirDatos("Comando> ", comando).toString();
+        
+        comando = Ficheros.eliminarComillas(comando);
+        
+        comando = Ficheros.agregarExtension(comando, ".html");
+        
+        File help = new File(Ficheros.miDir, ("recursos\\help\\html\\" + comando));
+        
+        try {
+            if(help.exists()) {
+                Desktop.getDesktop().open(help);
+            } else {
+                System.out.println("La ayuda para ese comando no esta disponible:/\n"
+                        + "Intenta help -comando");
+            }
+        } catch(IOException e) {
+            System.out.println("Lo sentimos, ha habido un error.");
+        }
+    }
+    
     public void commandHelp(String comando) {
         Redirect redirecter = new Redirect();
         
@@ -142,6 +169,7 @@ public class Help extends Comandos implements Redirecter {
                 + "     -more: muestra la ayuda general por partes\n"
                 + "     -comando: muestra ayuda sobre ese comando en especifico\n"
                 + "     -else: muestra una lista de los comandos que no aparecen en la ayuda principal\n"
+                + "     -html comando: muestra ayuda sobre ese comando en el navegador"
                 + "* Puede enlistar en forma de parametros individuales tantos comandos como quiera\n"
                 + "____________________________________________________________________________");
     }

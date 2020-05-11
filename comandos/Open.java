@@ -52,7 +52,9 @@ public class Open extends Comandos implements Redirecter {
         if(snippet.exists() && snippet.isFile()) {
             try {
                  Desktop.getDesktop().open(snippet);
-            } catch(IOException e) { System.out.println("Ha habido un error :( | " + e.getMessage());}
+            } catch(IOException e) { 
+                System.out.println("Ha habido un error :( | " + e.getMessage());
+            }
         } else {
             System.out.println("El archivo no existe");
         }
