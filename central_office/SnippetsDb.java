@@ -80,6 +80,10 @@ public class SnippetsDb {
                     + "-----------------------------------------------------------------------------------------\n");
             
         }
+        
+        if(!new File(DIRECTORIOPRINCIPAL, "default").exists()) {
+            new File(DIRECTORIOPRINCIPAL, "default").mkdir();
+        }
     }
     
     @Override
