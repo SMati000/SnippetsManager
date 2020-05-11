@@ -28,18 +28,20 @@ public class Help extends Comandos implements Redirecter {
         if(instruccion.hasArgumentoDelComando()) {
             System.out.println(NO_NECESITO_ARGUMENTO_DEL_COMANDO);
         } else if(instruccion.hasParametros()) {
-            
-            if(instruccion.hasParametro("-more")) {
                 
-                helpWithMore();
-                
-            } else {
-                
-                instruccion.getParametrosYArgumentos().forEach(paramYArg -> {
-                    commandHelp(paramYArg.getParametro());
-                });
-                
-            }
+            instruccion.getParametrosYArgumentos().forEach(paramYArg -> {
+                switch(paramYArg.getParametro()) {
+                    case "-more":
+                        helpWithMore();
+                        break;
+                    case "-else":
+                        listCommands();
+                        break;
+                    default:
+                        commandHelp(paramYArg.getParametro());
+                        break;
+                }
+            });
             
         } else {
             allHelp();
@@ -100,6 +102,29 @@ public class Help extends Comandos implements Redirecter {
             System.out.println("Lo sentimos, ha habido un error.");
         }
     }
+
+    private void listCommands() {
+        String[] lista = {"[Rename]"};
+        
+        System.out.println("\n______________________________________________");
+        
+        int indice = 0;
+        for(String l : lista) {
+            System.out.print(l + " ");
+            
+            if(indice == 6) {
+                System.out.println("");
+                indice = 0;
+            }
+            
+            indice++;
+        }
+        
+        System.out.println("\nPuedes ver la ayuda a cada uno de estos comandos usando la instruccion [help -html \"comando\"]\n"
+                        + "Esta ayuda tambien esta disponible para los comandos principales");
+        
+        System.out.println("______________________________________________\n");
+    }
     
     public void commandHelp(String comando) {
         Redirect redirecter = new Redirect();
@@ -114,8 +139,9 @@ public class Help extends Comandos implements Redirecter {
     public void help() {
         System.out.println("\n____________________________________________________________________________\n"
                 + "help: muestra ayuda sobre todos los comandos del programa\n"
-                + "     -more: muestra la ayuda general por partes"
+                + "     -more: muestra la ayuda general por partes\n"
                 + "     -comando: muestra ayuda sobre ese comando en especifico\n"
+                + "     -else: muestra una lista de los comandos que no aparecen en la ayuda principal\n"
                 + "* Puede enlistar en forma de parametros individuales tantos comandos como quiera\n"
                 + "____________________________________________________________________________");
     }
