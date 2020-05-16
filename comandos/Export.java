@@ -30,7 +30,7 @@ public class Export extends Comandos implements Redirecter {
         }
     }
     
-    public void export(String ruta) {
+    private void export(String ruta) {
         Scanner in = new Scanner(System.in);
             
         if(ruta == null) {

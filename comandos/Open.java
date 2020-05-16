@@ -34,7 +34,7 @@ public class Open extends Comandos implements Redirecter {
         }
     }
     
-    public void open(String file) {
+    private void open(String file) {
         
         if(file == null) {
             System.out.print("Abrir> ");

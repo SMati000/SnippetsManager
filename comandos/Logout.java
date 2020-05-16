@@ -27,7 +27,7 @@ public class Logout extends Comandos implements Redirecter {
         }
     }
     
-    public void logout() {
+    private void logout() {
         Main.getUser().login();
     }
     

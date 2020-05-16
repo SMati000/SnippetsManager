@@ -22,7 +22,7 @@ public class Exit extends Comandos implements Redirecter {
         }
     }
     
-    public void exit() {
+    private void exit() {
         System.exit(0);
     }
     

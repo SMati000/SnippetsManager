@@ -31,7 +31,7 @@ public class Info extends Comandos implements Redirecter {
         }
     }
     
-    public void info() {
+    private void info() {
         System.out.println("------------------------------------------------------");
         
         System.out.println (

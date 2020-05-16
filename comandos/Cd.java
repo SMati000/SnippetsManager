@@ -30,7 +30,7 @@ public class Cd extends Comandos implements Redirecter {
         }
     }
     
-    public void cd(String arg) {
+    private void cd(String arg) {
         switch(arg) {
             case "..":
                 goBack();
@@ -44,7 +44,7 @@ public class Cd extends Comandos implements Redirecter {
         }
     }
     
-    public void goTo(File goTo) {
+    private void goTo(File goTo) {
         if(goTo.exists() && goTo.isDirectory()) {
             InicioDelPrograma.cambiarLugarDeEjecucionA(goTo);
         } else {
@@ -52,7 +52,7 @@ public class Cd extends Comandos implements Redirecter {
         }
     }
     
-    public void goBack() {
+    private void goBack() {
         if(Main.getUser().getEjecutandoseEnFile().getName().equals("SnippetsDB")) {
             return;
         }
@@ -60,7 +60,7 @@ public class Cd extends Comandos implements Redirecter {
         InicioDelPrograma.cambiarLugarDeEjecucionA(Main.getUser().getEjecutandoseEnFile().getParentFile());
     }
     
-    public void goHome() {
+    private void goHome() {
         InicioDelPrograma.cambiarLugarDeEjecucionA(new File(Main.getLog().leerDeLogTxt(1)));
     }
     

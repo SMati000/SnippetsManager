@@ -40,14 +40,14 @@ public class Show extends Comandos implements Redirecter {
         }
     }
     
-    public void show() {
+    private void show() {
         File dir = new File(Main.getLog().leerDeLogTxt(1));
         System.out.println(dir.getAbsolutePath());
         
         Ficheros.displayAll(dir, "    ");
     }
     
-    public void showThis() {
+    private void showThis() {
         String[] rutas = Main.getUser().getEjecutandoseEnFile().list();
         
         for (String ruta : rutas) {

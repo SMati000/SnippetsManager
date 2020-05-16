@@ -46,7 +46,7 @@ public class Add extends Comandos implements Redirecter {
         
     }
     
-    public void add(String name, String category) {
+    private void add(String name, String category) {
         
         category = Ficheros.eliminarComillas(category); 
         

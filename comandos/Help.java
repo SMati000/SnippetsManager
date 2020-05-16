@@ -52,7 +52,7 @@ public class Help extends Comandos implements Redirecter {
         }
     }
     
-    public void allHelp() {
+    private void allHelp() {
         File help = new File(Ficheros.miDir, "recursos\\help\\help.txt");
         
         try {
@@ -70,7 +70,7 @@ public class Help extends Comandos implements Redirecter {
         }
     }
     
-    public synchronized void helpWithMore() {
+    private void helpWithMore() {
         
         File help = new File(Ficheros.miDir, "recursos\\help\\help.txt");
         
@@ -107,7 +107,7 @@ public class Help extends Comandos implements Redirecter {
         }
     }
 
-    public void listCommands() {
+    private void listCommands() {
         String[] lista = {"[rename]"};
         
         System.out.println("\n______________________________________________");
@@ -153,7 +153,7 @@ public class Help extends Comandos implements Redirecter {
         }
     }
     
-    public void commandHelp(String comando) {
+    private void commandHelp(String comando) {
         Redirect redirecter = new Redirect();
         
         List<ParametrosYArgumentos> helpParam = new ArrayList<>();

@@ -32,7 +32,7 @@ public class Move extends Comandos implements Redirecter {
         }
     }
     
-    public void move(String ubicacion) {
+    private void move(String ubicacion) {
         Scanner in = new Scanner(System.in);
         
         if(ubicacion == null) {

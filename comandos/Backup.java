@@ -50,7 +50,7 @@ public class Backup extends Comandos implements Redirecter {
         }
     }
     
-    public void doBackup(String to) {
+    private void doBackup(String to) {
         if(to == null || to.isEmpty()) {
             Scanner in = new Scanner(System.in);
             
@@ -74,7 +74,7 @@ public class Backup extends Comandos implements Redirecter {
         }
     }
     
-    public void restoreBackup(String restoreFrom) {
+    private void restoreBackup(String restoreFrom) {
         if(restoreFrom == null || restoreFrom.isEmpty()) {
             Scanner in = new Scanner(System.in);
             

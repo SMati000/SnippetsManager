@@ -30,7 +30,7 @@ public class Delete extends Comandos implements Redirecter {
         }
     }
     
-    public void delete(String toDelete) {
+    private void delete(String toDelete) {
         if(toDelete == null) {
             Scanner in = new Scanner(System.in);
             System.out.print("Eliminar> ");

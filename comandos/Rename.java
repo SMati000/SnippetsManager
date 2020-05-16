@@ -37,7 +37,7 @@ public class Rename extends Comandos implements Redirecter {
         }
     }
     
-    public void rename(String archivo, String renameTo) {
+    private void rename(String archivo, String renameTo) {
         archivo = pedirDatos("Archivo a renombrar> ", archivo).toString();
         renameTo = pedirDatos("Nombre nuevo> ", renameTo).toString();
         
@@ -55,6 +55,7 @@ public class Rename extends Comandos implements Redirecter {
         }
     }
     
+    @Override
     public void help() {
         System.out.println("\n____________________________________________________________________________\n"
                 + "rename \"archivo\": renombrar archivos y carpetas\n"

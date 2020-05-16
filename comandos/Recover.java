@@ -30,7 +30,7 @@ public class Recover extends Comandos implements Redirecter {
         }
     }
     
-    public void recover() {
+    private void recover() {
         File restoreTo = new File(Main.getLog().leerDeLogTxt(1));
         File restoreFrom;
         
