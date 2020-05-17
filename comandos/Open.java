@@ -70,8 +70,8 @@ public class Open extends Comandos implements Redirecter {
     @Override
     public void help() {
         System.out.println("\n____________________________________________________________________________\n"
-                + "open \"categoria/snippet.txt\": este comando abrira\n"
-                + "el snippet indicado para que pueda verlo y editarlo\n"
+                + "open \"categoria/snippet.txt\": este comando abrira el snippet indicado para que pueda verlo y editarlo\n"
+                + "     -openwith: le permite indicar un programa con el cual abrir el snippet"
                 + "____________________________________________________________________________");
     }
     

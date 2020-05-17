@@ -50,6 +50,8 @@ public class Info extends Comandos implements Redirecter {
         } else {
             System.out.println("Snippets DB: no encontrado");
         }
+        
+        System.out.println("Editor por defecto: " + Main.getUser().getDefaultProgram());
 
         System.out.println("------------------------------------------------------");
     }
