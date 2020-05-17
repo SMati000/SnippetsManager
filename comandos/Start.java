@@ -60,7 +60,7 @@ public class Start extends Comandos implements Redirecter {
                 }
                 
             } else {
-                Main.getLog().escribirEnLogTxt(2, "C:\\WINDOWS\\system32\\notepad.exe"); // deberia ser vim
+                Main.getLog().escribirEnLogTxt(2, Vim.VIM.getAbsolutePath());
                 
                 Main.getUser().signIn();
                 

@@ -2,6 +2,7 @@ package comandos;
 
 import backend.Ficheros;
 import central_office.Instruccion;
+import static comandos.Vim.VIM;
 import general.Main;
 import java.awt.Desktop;
 import java.io.File;
@@ -57,10 +58,12 @@ public class Open extends Comandos implements Redirecter {
                     
                     Process process = runtime.exec(program + " " + snippet);
                 } else {
-                    Desktop.getDesktop().open(snippet);
+                    String comando = "\"" + VIM.getCanonicalPath() + "\" \"" + snippet.getCanonicalPath() + "\"";
+                    
+                    new ProcessBuilder(comando).inheritIO().start().waitFor();
                 }
                 
-            } catch(IOException e) {}
+            } catch(IOException | InterruptedException e) {}
             
         } else {
             System.out.println("El archivo no existe");
