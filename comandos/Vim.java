@@ -14,6 +14,11 @@ public class Vim extends Comandos implements Redirecter {
 
     @Override
     public void redirecter() {
+        if(instruccion.hasParametro("-help")) {
+            help();
+            return;
+        }
+        
         if(Main.getUser().hasStarted()) {
             if(instruccion.hasParametros()) {
                 System.out.println(NO_NECESITO_PARAMETROS);
@@ -37,6 +42,13 @@ public class Vim extends Comandos implements Redirecter {
         } catch (Exception ex) {
             System.out.println(ex);
         }
+    }
+    
+    @Override
+    public void help() {
+        System.out.println("\n____________________________________________________________________________\n"
+                + "vim \"snippet\": te abre el snippet en vim, el editor integrado en el programa\n"
+                + "____________________________________________________________________________");
     }
     
 }

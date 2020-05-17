@@ -11,6 +11,11 @@ public class Config extends Comandos implements Redirecter {
 
     @Override
     public void redirecter() {
+        if(instruccion.hasParametro("-help")) {
+            help();
+            return;
+        }
+        
         if(Main.getUser().hasStarted()) {
         
             if(instruccion.hasParametros()) {
@@ -31,6 +36,14 @@ public class Config extends Comandos implements Redirecter {
     private void setDefaultProgram(String program) {
         Main.getLog().escribirEnLogTxt(2, program);
         Main.getUser().setDefaultProgram(program);
+    }
+    
+    @Override
+    public void help() {
+        System.out.println("\n____________________________________________________________________________\n"
+                + "config: te permite configurar y personalizar el programa\n"
+                + "     -dp \"programa\": te permite establecer un editor predeterminado para ver y editar tus snippets.\n"
+                + "____________________________________________________________________________");
     }
     
 }
