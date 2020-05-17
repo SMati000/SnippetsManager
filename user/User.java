@@ -10,11 +10,14 @@ public class User {
     private final Contraseña contraseña;
     private String ejecutandoseEn;
     private File ejecutandoseEnFile;
+    private String defaultProgram;
     
     public User() {
         this.contraseña = new Contraseña();
         ejecutandoseEn = "\nSnippetsM Console> ";
         ejecutandoseEnFile  = new File(SnippetsDb.defaultSnippetsDb().toString());
+        
+        defaultProgram = Main.getLog().leerDeLogTxt(2);
     }
     
     public void signIn() {
@@ -70,7 +73,15 @@ public class User {
         this.ejecutandoseEn = temp.substring(temp.indexOf("SnippetsDB"), temp.length()) + "> ";
     }
     
+    public void setDefaultProgram(String defaultProgram) {
+        this.defaultProgram = defaultProgram;
+    }
+    
     public File getEjecutandoseEnFile() {
         return this.ejecutandoseEnFile;
+    }
+    
+    public String getDefaultProgram() {
+        return this.defaultProgram;
     }
 }

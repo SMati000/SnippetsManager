@@ -25,7 +25,7 @@ public final class Interpreter {
         List<ParametrosYArgumentos> paramsYArgs = new ArrayList<>();
         
                                               // comando "arg" || -param "arg" -> las comillas son opcionales en ambos casos
-        Pattern checkSymbols = Pattern.compile("-?[A-Za-z]+([\\s][\"]?[\\w(\\d\\s.:'/'\\\\)?]+[\"]?)?");
+        Pattern checkSymbols = Pattern.compile("-?[A-Za-z]+([\\s][\"]?[\\w(\\d\\s.:+'/'\\\\)?]+[\"]?)?");
         Matcher parser = checkSymbols.matcher(this.instruccion);
         
         for(int i = 0; parser.find(); i++) {

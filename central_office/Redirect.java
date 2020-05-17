@@ -11,6 +11,9 @@ public class Redirect {
             case "start":
                 redirect = new Start(instrucciones);
                 break;
+            case "config":
+                redirect = new Config(instrucciones);
+                break;
             case "add":
                 redirect = new Add(instrucciones);
                 break;

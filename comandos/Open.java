@@ -6,7 +6,6 @@ import general.Main;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
 
 public class Open extends Comandos implements Redirecter {
 
@@ -22,26 +21,26 @@ public class Open extends Comandos implements Redirecter {
         }
         
         if(Main.getUser().hasStarted()) {
+            StringBuilder program = new StringBuilder(Main.getUser().getDefaultProgram());
             
             if(this.instruccion.hasParametros()) {
-                System.out.println(NO_NECESITO_PARAMETROS);
-            } else {
-                open(this.instruccion.getArgumentoDelComando());
+                instruccion.getParametrosYArgumentos().forEach(paramYArg -> {
+                    if(paramYArg.getParametro().equalsIgnoreCase("-openWith")) {
+                        program.replace(0, program.length(), paramYArg.getArgumento());
+                    }
+                });
             }
+            
+            open(this.instruccion.getArgumentoDelComando(), program.toString());
             
         } else {
             System.out.println(DEBE_INICIAR_MSG);
         }
     }
     
-    private void open(String file) {
+    private void open(String file, String program) {
         
-        if(file == null) {
-            System.out.print("Abrir> ");
-
-            Scanner in = new Scanner(System.in);
-            file = in.nextLine();
-        }
+        file = pedirDatos("Abrir>", file).toString();
         
         file = Ficheros.eliminarComillas(file);
                 
@@ -50,11 +49,19 @@ public class Open extends Comandos implements Redirecter {
         File snippet = new File(Main.getUser().getEjecutandoseEnFile(), file);
 
         if(snippet.exists() && snippet.isFile()) {
+            
             try {
-                 Desktop.getDesktop().open(snippet);
-            } catch(IOException e) { 
-                System.out.println("Ha habido un error :( | " + e.getMessage());
-            }
+                
+                if(new File(program).isFile()) {
+                    Runtime runtime = Runtime.getRuntime();
+                    
+                    Process process = runtime.exec(program + " " + snippet);
+                } else {
+                    Desktop.getDesktop().open(snippet);
+                }
+                
+            } catch(IOException e) {}
+            
         } else {
             System.out.println("El archivo no existe");
         }
