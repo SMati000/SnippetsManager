@@ -3,8 +3,8 @@ package comandos;
 import backend.Ficheros;
 import central_office.Instruccion;
 import static comandos.Vim.VIM;
+import funcionalidades.dirlist.*;
 import general.Main;
-import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 
@@ -32,7 +32,12 @@ public class Open extends Comandos implements Redirecter {
                 });
             }
             
-            open(this.instruccion.getArgumentoDelComando(), program.toString());
+            if(instruccion.hasArgumentoDelComando()) {
+                open(this.instruccion.getArgumentoDelComando(), program.toString());
+            } else {
+                dirList = new DirListFilesOnly();
+                open(dirList.ask(), program.toString());
+            }
             
         } else {
             System.out.println(DEBE_INICIAR_MSG);
@@ -41,11 +46,9 @@ public class Open extends Comandos implements Redirecter {
     
     private void open(String file, String program) {
         
-        file = pedirDatos("Abrir>", file).toString();
+        file = pedirDatos("Abrir> ", file).toString();
         
         file = Ficheros.eliminarComillas(file);
-                
-        file = Ficheros.agregarExtension(file, ".txt");
 
         File snippet = new File(Main.getUser().getEjecutandoseEnFile(), file);
 

@@ -1,6 +1,7 @@
 package comandos;
 
 import central_office.Instruccion;
+import funcionalidades.dirlist.DirListAll;
 import general.Main;
 import java.io.File;
 
@@ -31,7 +32,12 @@ public class Rename extends Comandos implements Redirecter {
                 });
             }
             
-            rename(instruccion.getArgumentoDelComando(), renameTo.toString());
+            if(instruccion.hasArgumentoDelComando()) {
+                rename(instruccion.getArgumentoDelComando(), renameTo.toString());
+            } else {
+                dirList = new DirListAll();
+                rename(dirList.ask(), renameTo.toString());
+            }
         } else {
             System.out.println(DEBE_INICIAR_MSG);
         }

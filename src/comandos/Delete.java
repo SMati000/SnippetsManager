@@ -2,6 +2,7 @@ package comandos;
 
 import backend.Ficheros;
 import central_office.Instruccion;
+import funcionalidades.dirlist.*;
 import general.Main;
 import java.io.File;
 import java.util.Scanner;
@@ -22,8 +23,12 @@ public class Delete extends Comandos implements Redirecter {
         if(Main.getUser().hasStarted()) {
             if(this.instruccion.hasParametros()) {
                 System.out.println(NO_NECESITO_PARAMETROS);
-            } else {
+            } else if(instruccion.hasArgumentoDelComando()) {
                 delete(this.instruccion.getArgumentoDelComando());
+            } else {
+                dirList = new DirListAll();
+                
+                delete(dirList.ask());
             }
         } else {
             System.out.println(DEBE_INICIAR_MSG);
@@ -31,16 +36,11 @@ public class Delete extends Comandos implements Redirecter {
     }
     
     private void delete(String toDelete) {
-        if(toDelete == null) {
-            Scanner in = new Scanner(System.in);
-            System.out.print("Eliminar> ");
-            
-            toDelete = in.nextLine();
-        }
+        toDelete = pedirDatos("Eliminar> ", toDelete).toString();
         
         File delete = new File(Main.getUser().getEjecutandoseEnFile(), Ficheros.eliminarComillas(toDelete));
         
-        if(delete.exists()) {
+        if(delete.exists() && !delete.equals(Main.getUser().getEjecutandoseEnFile())) {
             
             if(delete.isFile()) {
                 
