@@ -1,0 +1,77 @@
+PARA OBTENER INFORMACION DE UN COMANDO EN ESPECIFICO, ESCRIBA EL COMANDO SEGUIDO DEL PARAMETRO
+'-help' (SIN LAS COMILLAS) O TAMBIEN PUEDE ESCRIBIR EL COMANDO HELP SEGUIDO DE UN PARAMETRO QUE
+SEA EL COMANDO DEL QUE QUIERE OBTENER AYUDA - EJEMPLO: help -add || add -help
+
+Syntaxis general: (PUEDEN HABER VARIACIONES)  
+    > [comando] o [comando "argumento del comando"] + [-parametro] o [-parametro "argumento"]
+    > LA MAYORIA DE LOS COMANDOS QUE NECESITAN UN VALOR, PUEDEN EJECUTARSE POR SI SOLOS
+    E INGRESAR EL VALOR LUEGO DEL COMANDO, ES DECIR:
+    [comando "valor"] o -> [comando -> valor].
+
+Comandos:
+> help: muestra ayuda sobre todos los comandos del programa
+    -more: muestra la ayuda general por partes
+    -comando: muestra ayuda sobre ese comando en especifico
+    -else: muestra una lista de los comandos que no aparecen en la ayuda principal
+    -html comando: muestra ayuda sobre ese comando en el navegador
+    * Puede enlistar en forma de parametros individuales tantos comandos como quiera
+
+> info: muestra informacion general
+
+> clear: limpia la consola
+
+> exit: le permite salir del programa
+
+> start: este comando le permite iniciar en el programa y especificar los datos necesarios. 
+SOLO SE USA LA PRIMERA VEZ QUE INGRESE AL PROGRAMA. 
+NECESARIO PARA PODER USAR MUCHAS FUNCIONES!!
+-------------------------------------------------------------------------------------------
+LOS SIGUIENTES PARAMETROS, NO LOS USE LA PRIMERA VEZ PARA ESTABLECER SUS DATOS, SOLO USELOS
+PARA CAMBIAR LOS YA ESTABLECIDOS, GRACIAS :)
+    -newpassword: le permite cambiar o establecer una contrasena
+    -newpath: le permite cambiar la ruta de almacenamiento (ESTE COMANDO MOVERA TODO A LA
+    NUEVA RUTA)
+
+> new: Crea un/a nuevo/a...
+    -cat 'nombre' (case-insensitive): se crea una categoria en la SnippetsDB. Si quieres crear una categoria
+    dentro de otra, es decir, una subcategoria, solo pon new -category "categoria/nueva subcategoria"
+    CUANDO CUALQUIERA DE LOS NOMBRES LLEVAN ESPACIOS, DEBE PONER COMILLAS COMO SE MUESTRA EN EL EJEMPLO
+
+> add "...\ubicacion.txt": Agregar un snipett
+    -category "name": agrega el snippet a esa categoria, si no se especifica categoria,
+    el snippet se agrega a la categoria "default". Si quieres agregar el snippet
+    dentro de una subcategoria, solo pon -add "ubicacion.txt" /category "categoria/sub categoria"- (sin los guiones)
+    CUANDO CUALQUIERA DE LOS NOMBRES LLEVAN ESPACIOS, DEBE PONER COMILLAS COMO SE MUESTRA EN EL EJEMPLO
+
+> open "categoria/snippet.txt": este comando abrira el snippet indicado para que pueda verlo o editarlo
+".txt" es la extension por defecto, si utilizas otro editor, pon la extension correspondiente. Si no
+indicas extension, el programa asumira por defecto la extension ".txt"
+    -openwith: le permite indicar un programa con el cual abrir el snippet
+
+> move \"ubicacion\": este comando le permite mover el snippet o categoria indicada a otra categoria o subcategoria
+SI DESEA MOVER A LA RUTA PRINCIPAL DE LA SNIPPETS DB, EN [mover a> ] NO DEBE PONER NADA
+
+> export \"ubicaion\": este comando le permite hacer una copia del snippet o categoria indicada
+a una carpeta externa a la SnippetsDb
+
+> show: Desplega un arbol con todo el contenido de la SnippetsDB
+    -this: muestra los archivos y carpetas en la ubicacion especifica en la que estas
+
+> cd: te permite navegar en la SnippetsDB
+    cd "categoria\subcat": accede a esa carpeta
+    cd.. retrocede una carpeta
+    cd\ retrocede al inicio
+ADVERTENCIA: TODOS LOS COMANDOS SE EJECUTAN EN LA UBICACION EN LA QUE ESTE. EXCEPTO AQUELLOS COMANDOS QUE
+SON GENERALES COMO -displayit, recover, backup, etc-.
+
+> delete "ubicacion": le permite eliminar un snippet, categoria o subcategoria
+
+> backup "..\ubicacion donde guardar": Creara un backup en la ubicacion especificada
+    -restore "ubicacion del backup hecho": en caso de tener algun problema con la carpeta original,
+    puede restaurar su backup para usarlo como carpeta original
+
+> recover: en caso de tener algun problema con la carpeta original y no tener backups recientes, puede usar
+    este comando y el programa automaticamente restaurara lo que pueda
+
+> logout: el programa cierra la sesion activa y solicita la contrasena nuevamente (este comando es inutil si no
+    ha establecido una contrasena)

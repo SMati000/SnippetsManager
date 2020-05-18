@@ -1,0 +1,4 @@
+12345. MODIFICAR O ELIMINAR ESTE ARCHIVO PUEDE ALTERAR SERIAMENTE EL FUNCIONAMIENTO DEL PROGRAMA
+1. C:\Users\Roberto\Desktop\SnippetsDB
+0. 6bb61e3b7bce0931da574d19d1d82c88
+2. c:\mati stuff\programacion\notepad++\notepad++.exe
