@@ -21,20 +21,32 @@ public class Export extends Comandos implements Redirecter {
         }
         
         if(Main.getUser().hasStarted()) {
+            StringBuilder to = new StringBuilder();
+            
             if(instruccion.hasParametros()) {
-                System.out.println(NO_NECESITO_PARAMETROS);
-            } else if(instruccion.hasArgumentoDelComando()) {
-                export(instruccion.getArgumentoDelComando());
+                
+                instruccion.getParametrosYArgumentos().forEach(paramYArg -> {
+                    if(paramYArg.getParametro().equalsIgnoreCase("-to")) {
+                        to.append(paramYArg.getArgumento());
+                    }
+                });
+                
+            }
+            
+            if(instruccion.hasArgumentoDelComando()) {
+                export(instruccion.getArgumentoDelComando(), to.toString());
+                
             } else {
                 dirList = new DirListAll();
-                export(dirList.ask());
+                export(dirList.ask(), to.toString());
             }
+            
         } else {
             System.out.println(DEBE_INICIAR_MSG);
         }
     }
     
-    private void export(String ruta) {
+    private void export(String ruta, String to) {
         Scanner in = new Scanner(System.in);
             
         ruta = pedirDatos("Exportar> ", ruta).toString();
@@ -43,8 +55,8 @@ public class Export extends Comandos implements Redirecter {
         
         if(exportar.exists()) {
             
-            System.out.print("Exportar a> ");
-            File destino = new File(Ficheros.eliminarComillas(in.nextLine()));
+            to = pedirDatos("Exportar A> ", to).toString();
+            File destino = new File(Ficheros.eliminarComillas(to));
             
             if(destino.exists() && destino.isDirectory()) {
                 

@@ -21,18 +21,25 @@ public class Move extends Comandos implements Redirecter {
         }
         
         if(Main.getUser().hasStarted()) {
+            StringBuilder to = new StringBuilder();
             
             if(this.instruccion.hasParametros()) {
                 
-                System.out.println(NO_NECESITO_PARAMETROS);
+                instruccion.getParametrosYArgumentos().forEach(paramYArg -> {
+                    if(paramYArg.getParametro().equalsIgnoreCase("-to")) {
+                        to.append(paramYArg.getArgumento());
+                    }
+                });
                 
-            } else if(instruccion.hasArgumentoDelComando()) {
+            }
+            
+            if(instruccion.hasArgumentoDelComando()) {
                 
-                move(this.instruccion.getArgumentoDelComando());
+                move(this.instruccion.getArgumentoDelComando(), to.toString());
             
             } else {
                 dirList = new DirListAll();
-                move(dirList.ask());
+                move(dirList.ask(), to.toString());
             }
             
         } else {
@@ -40,18 +47,15 @@ public class Move extends Comandos implements Redirecter {
         }
     }
     
-    private void move(String ubicacion) {
-        Scanner in = new Scanner(System.in);
-        
+    private void move(String ubicacion, String to) {
         ubicacion = pedirDatos("Snippet o Categoria a mover> ", ubicacion).toString();
         
         File mover = new File(Main.getUser().getEjecutandoseEnFile(), Ficheros.eliminarComillas(ubicacion));
         
         if(mover.exists()) {
-            System.out.print("(No ponga nada para mover a la ruta principal de la Snippets Db)\n"
-                    + "Mover a> ");
+            to = pedirDatos("No ponga nada para mover a la ruta principal de la Snippets Db\nMover a> ", to).toString();
             
-            File moverA = new File(Main.getLog().leerDeLogTxt(1), Ficheros.eliminarComillas(in.nextLine()));
+            File moverA = new File(Main.getLog().leerDeLogTxt(1), Ficheros.eliminarComillas(to));
             
             if(moverA.exists() && moverA.isDirectory()) {
                 moverA = new File(moverA, mover.getName());

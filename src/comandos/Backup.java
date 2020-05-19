@@ -51,14 +51,9 @@ public class Backup extends Comandos implements Redirecter {
     }
     
     private void doBackup(String to) {
-        if(to == null || to.isEmpty()) {
-            Scanner in = new Scanner(System.in);
-            
-            System.out.print("Crear el backup en> ");
-            to = in.nextLine();
-        }
+        to = pedirDatos("Crear el backup en> ", to).toString();
         
-        if(to.equalsIgnoreCase(Main.getLog().leerDeLogTxt(1))) {
+        if(to.contains(Main.getLog().leerDeLogTxt(1))) {
             System.out.println("No puede hacer un backup dentro de la propia Snippets Db");
             return;
         }

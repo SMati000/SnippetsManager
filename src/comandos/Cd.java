@@ -72,7 +72,7 @@ public class Cd extends Comandos implements Redirecter {
     public void help() {
         System.out.println("\n____________________________________________________________________________\n"
                     + "cd: te permite navegar en la SnippetsDB\n"
-                    + "    cd: muestra tu ubicacion actual"
+                    + "    cd: muestra tu ubicacion actual\n"
                     + "    cd \"categoria\\subcat\": accede a esa carpeta\n"
                     + "    cd .. retrocede una carpeta\n"
                     + "    cd \\ retrocede al inicio\n"
