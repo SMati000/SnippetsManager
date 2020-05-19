@@ -14,7 +14,7 @@ public class User {
     
     public User() {
         this.contraseña = new Contraseña();
-        ejecutandoseEn = "\nSnippetsM Console> ";
+        ejecutandoseEn = "\nSnippetsDB> ";
         ejecutandoseEnFile  = new File(SnippetsDb.defaultSnippetsDb().toString());
         
         defaultProgram = Main.getLog().leerDeLogTxt(2);

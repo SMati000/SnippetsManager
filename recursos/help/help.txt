@@ -61,6 +61,7 @@ a una carpeta externa a la SnippetsDb
     -this: muestra los archivos y carpetas en la ubicacion especifica en la que estas
 
 > cd: te permite navegar en la SnippetsDB
+    cd: muestra tu ubicacion actual
     cd "categoria\subcat": accede a esa carpeta
     cd.. retrocede una carpeta
     cd\ retrocede al inicio
