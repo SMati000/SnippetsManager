@@ -2,6 +2,7 @@ package comandos;
 
 import backend.Ficheros;
 import central_office.Instruccion;
+import funcionalidades.dirlist.DirList;
 import java.util.Scanner;
 
 public abstract class Comandos {
@@ -13,6 +14,7 @@ public abstract class Comandos {
     protected final String NO_NECESITO_PARAMETROS = "Este comando no necesita parametros";
     
     protected Instruccion instruccion;
+    protected DirList dirList;
     
     public Comandos(Instruccion instruccion) {
         this.instruccion = instruccion;

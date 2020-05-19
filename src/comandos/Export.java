@@ -2,6 +2,7 @@ package comandos;
 
 import backend.Ficheros;
 import central_office.Instruccion;
+import funcionalidades.dirlist.DirListAll;
 import general.Main;
 import java.io.File;
 import java.util.Scanner;
@@ -22,8 +23,11 @@ public class Export extends Comandos implements Redirecter {
         if(Main.getUser().hasStarted()) {
             if(instruccion.hasParametros()) {
                 System.out.println(NO_NECESITO_PARAMETROS);
-            } else {
+            } else if(instruccion.hasArgumentoDelComando()) {
                 export(instruccion.getArgumentoDelComando());
+            } else {
+                dirList = new DirListAll();
+                export(dirList.ask());
             }
         } else {
             System.out.println(DEBE_INICIAR_MSG);
@@ -33,10 +37,7 @@ public class Export extends Comandos implements Redirecter {
     private void export(String ruta) {
         Scanner in = new Scanner(System.in);
             
-        if(ruta == null) {
-            System.out.print("Exportar> ");
-            ruta = in.nextLine();
-        }
+        ruta = pedirDatos("Exportar> ", ruta).toString();
         
         File exportar = new File(Main.getUser().getEjecutandoseEnFile(), Ficheros.eliminarComillas(ruta));
         
