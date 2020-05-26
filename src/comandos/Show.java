@@ -1,6 +1,8 @@
 package comandos;
 
 import backend.Ficheros;
+import central_office.Configurations.Configurations;
+import static central_office.Configurations.SystemConfigDTO.DEFAULTDIRKEY;
 import central_office.Instruccion;
 import general.Main;
 import java.io.File;
@@ -41,7 +43,7 @@ public class Show extends Comandos implements Redirecter {
     }
     
     private void show() {
-        File dir = new File(Main.getLog().leerDeLogTxt(1));
+        File dir = new File(Configurations.SYSTEMCONFIG.readVariable(DEFAULTDIRKEY).toString());
         System.out.println(dir.getAbsolutePath());
         
         Ficheros.displayAll(dir, "    ");

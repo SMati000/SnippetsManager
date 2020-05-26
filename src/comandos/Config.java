@@ -1,5 +1,7 @@
 package comandos;
 
+import central_office.Configurations.Configurations;
+import static central_office.Configurations.SystemConfigDTO.DEFAULTEDITORKEY;
 import central_office.Instruccion;
 import general.Main;
 
@@ -34,7 +36,7 @@ public class Config extends Comandos implements Redirecter {
     }
     
     private void setDefaultProgram(String program) {
-        Main.getLog().escribirEnLogTxt(2, program);
+        Configurations.SYSTEMCONFIG.updateVariable(DEFAULTEDITORKEY, program);
         Main.getUser().setDefaultProgram(program);
     }
     

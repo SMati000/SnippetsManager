@@ -1,6 +1,8 @@
 package comandos;
 
 import backend.Ficheros;
+import central_office.Configurations.Configurations;
+import static central_office.Configurations.SystemConfigDTO.DEFAULTDIRKEY;
 import central_office.Instruccion;
 import general.Main;
 import java.io.File;
@@ -31,7 +33,7 @@ public class Recover extends Comandos implements Redirecter {
     }
     
     private void recover() {
-        File restoreTo = new File(Main.getLog().leerDeLogTxt(1));
+        File restoreTo = new File(Configurations.SYSTEMCONFIG.readVariable(DEFAULTDIRKEY).toString());
         File restoreFrom;
         
         try {

@@ -1,6 +1,8 @@
 package comandos;
 
 import backend.Ficheros;
+import central_office.Configurations.Configurations;
+import static central_office.Configurations.SystemConfigDTO.DEFAULTDIRKEY;
 import central_office.Instruccion;
 import general.Main;
 import java.io.File;
@@ -53,7 +55,7 @@ public class Backup extends Comandos implements Redirecter {
     private void doBackup(String to) {
         to = pedirDatos("Crear el backup en> ", to).toString();
         
-        if(to.contains(Main.getLog().leerDeLogTxt(1))) {
+        if(to.contains(Configurations.SYSTEMCONFIG.readVariable(DEFAULTDIRKEY).toString())) {
             System.out.println("No puede hacer un backup dentro de la propia Snippets Db");
             return;
         }
@@ -82,7 +84,7 @@ public class Backup extends Comandos implements Redirecter {
         
         if(backupLocation.exists()) {
             
-            File restoreTo = new File(Main.getLog().leerDeLogTxt(1));
+            File restoreTo = new File(Configurations.SYSTEMCONFIG.readVariable(DEFAULTDIRKEY).toString());
             
             if(!restoreTo.exists()) {
                 restoreTo.mkdir();

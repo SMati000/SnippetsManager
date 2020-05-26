@@ -4,23 +4,19 @@ import backend.Ficheros;
 import general.Main;
 import java.io.File;
 import java.io.IOException;
+import central_office.Configurations.Configurations;
+import static central_office.Configurations.SystemConfigDTO.DEFAULTDIRKEY;
 
 public class Backup {
     public static File getBackupDir() {
-        File miDir = null;
-        
-        try {
-            miDir = new File(Ficheros.miDir.getCanonicalPath(), "Backup");
-        } catch (IOException ex) {
-            miDir = new File(Ficheros.miDir.getPath(), "Backup");
-        }
+        File miDir = new File(".", "Backup");
         
         return miDir;
     }
     
     public static void backUp(File backupDir) {
         if(Main.getUser().hasStarted()) {
-            File snippetsDb = new File(Main.getLog().leerDeLogTxt(1));
+            File snippetsDb = new File(Configurations.SYSTEMCONFIG.readVariable(DEFAULTDIRKEY).toString());
             
             if(!backupDir.exists()) {
                 backupDir.mkdir();
@@ -32,6 +28,6 @@ public class Backup {
     }
     
     public static void logBackUp() {
-        Ficheros.CopiarFichero(new File(Main.getLog().getLogTxtLocation()), new File(getBackupDir(), "log.txt"));
+        Ficheros.CopiarFichero(new File(Configurations.SYSTEMCONFIGFILE.getAbsolutePath()), new File(getBackupDir(), "log.txt"));
     }
 }

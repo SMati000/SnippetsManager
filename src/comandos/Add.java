@@ -1,6 +1,8 @@
 package comandos;
 
 import backend.Ficheros;
+import central_office.Configurations.Configurations;
+import static central_office.Configurations.SystemConfigDTO.DEFAULTDIRKEY;
 import central_office.Instruccion;
 import general.Main;
 import java.io.File;
@@ -54,7 +56,7 @@ public class Add extends Comandos implements Redirecter {
             
             File agregarA = new File(Main.getUser().getEjecutandoseEnFile(), category);
             
-            File snippetsDb = new File(Main.getLog().leerDeLogTxt(1));
+            File snippetsDb = new File(Configurations.SYSTEMCONFIG.readVariable(DEFAULTDIRKEY).toString());
             
             if(agregarA.equals(snippetsDb)) {
                 agregarA = new File(agregarA, "default");

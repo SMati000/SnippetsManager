@@ -1,6 +1,8 @@
 package comandos;
 
 import backend.Ficheros;
+import central_office.Configurations.Configurations;
+import static central_office.Configurations.SystemConfigDTO.DEFAULTDIRKEY;
 import central_office.Instruccion;
 import funcionalidades.dirlist.DirListAll;
 import general.Main;
@@ -55,7 +57,7 @@ public class Move extends Comandos implements Redirecter {
         if(mover.exists()) {
             to = pedirDatos("No ponga nada para mover a la ruta principal de la Snippets Db\nMover a> ", to).toString();
             
-            File moverA = new File(Main.getLog().leerDeLogTxt(1), Ficheros.eliminarComillas(to));
+            File moverA = new File(Configurations.SYSTEMCONFIG.readVariable(DEFAULTDIRKEY).toString(), Ficheros.eliminarComillas(to));
             
             if(moverA.exists() && moverA.isDirectory()) {
                 moverA = new File(moverA, mover.getName());

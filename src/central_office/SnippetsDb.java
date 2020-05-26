@@ -1,7 +1,8 @@
 package central_office;
 
 import backend.Ficheros;
-import general.Main;
+import central_office.Configurations.Configurations;
+import static central_office.Configurations.SystemConfigDTO.DEFAULTDIRKEY;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
@@ -35,8 +36,8 @@ public class SnippetsDb {
         
         final File CATEGORIAPRINCIPAL = new File(DIRECTORIOPRINCIPAL, "Default");
 
-        Ficheros.crearDirectorios(DIRECTORIOPRINCIPAL, true, Main.getLog(), 1);
-        Ficheros.crearDirectorios(CATEGORIAPRINCIPAL, false, Main.getLog(), 0);
+        Ficheros.crearDirectorios(DIRECTORIOPRINCIPAL, true, Configurations.SYSTEMCONFIG, DEFAULTDIRKEY);
+        Ficheros.crearDirectorios(CATEGORIAPRINCIPAL, false, Configurations.SYSTEMCONFIG, "");
     }
     
     public void mover(String moverA) {
@@ -59,8 +60,7 @@ public class SnippetsDb {
             
                 Ficheros.copiarTodo(vieja, ubicacion);
                 Ficheros.deleteAll(vieja);
-                Main.getLog().borrarLinea("1");
-                Main.getLog().escribirEnLogTxt(1, new File(ubicacion, NOMBRE).getCanonicalPath());
+                Configurations.SYSTEMCONFIG.updateVariable(DEFAULTDIRKEY, new File(ubicacion, NOMBRE).getCanonicalPath());
                 
                 System.out.println("Movido con exito!");
             } else {
@@ -88,12 +88,17 @@ public class SnippetsDb {
     
     @Override
     public String toString() {
-        return this.DIRECTORIOPRINCIPAL.getAbsolutePath();
+        if(this.DIRECTORIOPRINCIPAL != null) {
+            return this.DIRECTORIOPRINCIPAL.getAbsolutePath();
+        }
+        return "";
     }
     
     public static SnippetsDb defaultSnippetsDb() {
-        if(Main.getLog().leerDeLogTxt(1) != null) {
-            return (new SnippetsDb(new File(Main.getLog().leerDeLogTxt(1)).getParentFile()));
+        Object dir = Configurations.SYSTEMCONFIG.readVariable(DEFAULTDIRKEY);
+        
+        if(dir != null) {
+            return (new SnippetsDb(new File(dir.toString()).getParentFile()));
         }
         return null;
     }

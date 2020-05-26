@@ -1,6 +1,8 @@
 package comandos;
 
 import backend.Ficheros;
+import central_office.Configurations.Configurations;
+import static central_office.Configurations.SystemConfigDTO.DEFAULTEDITORKEY;
 import central_office.Instruccion;
 import central_office.SnippetsDb;
 import general.Main;
@@ -60,7 +62,7 @@ public class Start extends Comandos implements Redirecter {
                 }
                 
             } else {
-                Main.getLog().escribirEnLogTxt(2, Vim.VIM.getAbsolutePath());
+                Configurations.SYSTEMCONFIG.addVariable(DEFAULTEDITORKEY, Vim.VIM.getAbsolutePath());
                 
                 Main.getUser().signIn();
                 

@@ -1,12 +1,15 @@
 package user;
 import backend.Contraseña;
+import central_office.Configurations.Configurations;
+import static central_office.Configurations.SystemConfigDTO.DEFAULTDIRKEY;
+import static central_office.Configurations.SystemConfigDTO.DEFAULTEDITORKEY;
 import central_office.InicioDelPrograma;
 import central_office.SnippetsDb;
 import general.Main;
 import java.io.Console;
 import java.io.File;
 import java.util.Scanner;
-public class User {
+public final class User {
     private final Contraseña contraseña;
     private String ejecutandoseEn;
     private File ejecutandoseEnFile;
@@ -15,19 +18,21 @@ public class User {
     public User() {
         this.contraseña = new Contraseña();
         ejecutandoseEn = "\nSnippetsDB> ";
-        ejecutandoseEnFile  = new File(SnippetsDb.defaultSnippetsDb().toString());
         
-        defaultProgram = Main.getLog().leerDeLogTxt(2);
+        if(hasStarted()) {
+            ejecutandoseEnFile  = new File(SnippetsDb.defaultSnippetsDb().toString());
+            defaultProgram = Configurations.SYSTEMCONFIG.readVariable(DEFAULTEDITORKEY).toString();
+        }
     }
     
     public void signIn() {
-        this.contraseña.setPassword(Main.getLog());
+        this.contraseña.setPassword(Configurations.SYSTEMCONFIG);
     }
     
     public void login() {        
         if(!Main.getUser().hasStarted()) { 
             InicioDelPrograma.inicioDelPrograma();
-        } else if(!contraseña.verifyPassword(Main.getLog(), "-1")) {
+        } else if(!contraseña.verifyPassword(Configurations.SYSTEMCONFIG, "-1")) {
             String password = "";
             System.out.println("Por seguridad, puede ser que la contraseña no se vea en pantalla");
             Console console = System.console();
@@ -41,7 +46,7 @@ public class User {
                 password = new String(passwordArray);
             }
 
-            if(contraseña.verifyPassword(Main.getLog(), password)) {
+            if(contraseña.verifyPassword(Configurations.SYSTEMCONFIG, password)) {
                 SnippetsDb snippetsDb = SnippetsDb.defaultSnippetsDb();
                 snippetsDb.comprobarLugarDeAlmacenamiento();
                 Backup.backUp(Backup.getBackupDir());
@@ -59,7 +64,7 @@ public class User {
     }
     
     public boolean hasStarted() { 
-        return Main.getLog().leerDeLogTxt(1) != null;
+        return Configurations.SYSTEMCONFIG.readVariable(DEFAULTDIRKEY) != null;
     }
     
     public String getEjecutandoseEn() {

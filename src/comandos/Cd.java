@@ -1,6 +1,8 @@
 package comandos;
 
 import backend.Ficheros;
+import central_office.Configurations.Configurations;
+import static central_office.Configurations.SystemConfigDTO.DEFAULTDIRKEY;
 import central_office.InicioDelPrograma;
 import central_office.Instruccion;
 import general.Main;
@@ -65,7 +67,7 @@ public class Cd extends Comandos implements Redirecter {
     }
     
     private void goHome() {
-        InicioDelPrograma.cambiarLugarDeEjecucionA(new File(Main.getLog().leerDeLogTxt(1)));
+        InicioDelPrograma.cambiarLugarDeEjecucionA(new File(Configurations.SYSTEMCONFIG.readVariable(DEFAULTDIRKEY).toString()));
     }
     
     @Override

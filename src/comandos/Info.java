@@ -1,6 +1,8 @@
 package comandos;
 
 import backend.Ficheros;
+import central_office.Configurations.Configurations;
+import static central_office.Configurations.SystemConfigDTO.DEFAULTDIRKEY;
 import java.io.File;
 import central_office.Instruccion;
 import general.Main;
@@ -40,7 +42,7 @@ public class Info extends Comandos implements Redirecter {
             + "---------www.twitter.com/JMati000---------\n"
         );
 
-        File snippetsDB = new File(Main.getLog().leerDeLogTxt(1));
+        File snippetsDB = new File(Configurations.SYSTEMCONFIG.readVariable(DEFAULTDIRKEY).toString());
         
         if(snippetsDB.exists()) {
             System.out.println("Snippets DB: " + snippetsDB.getAbsolutePath());
