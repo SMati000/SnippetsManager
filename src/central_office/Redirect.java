@@ -26,6 +26,9 @@ public class Redirect {
             case "link":
                 redirect = new Link(instrucciones);
                 break;
+            case "af":
+                redirect = new AF(instrucciones);
+                break;
             case "cd":
                 redirect = new Cd(instrucciones);
                 break;
@@ -69,8 +72,10 @@ public class Redirect {
                 redirect = new Exit(instrucciones);
                 break;
             default:
-                System.out.println("Algo no esta bien con su instruccion... \n"
-                + "Consulte la ayuda especifica del comando o la ayuda general con el comando help");
+                System.out.println("\n____________________________________________________________________________\n"
+                        + "Algo no esta bien con su instruccion... \n"
+                        + "Consulte la ayuda especifica del comando o la ayuda general con el comando help\n"
+                        + "____________________________________________________________________________\n");
                 break;
         }
     }

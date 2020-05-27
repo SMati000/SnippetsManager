@@ -23,10 +23,14 @@ public class Link extends Comandos implements Redirecter {
     public void redirecter() {
         associatedFiles = new ArrayList<>();
         
-        if(instruccion.getParametrosYArgumentos().size() == 1) {
-            String parametro = instruccion.getParametrosYArgumentos().get(0).getParametro();
+        if(instruccion.hasParametros()) {
+            if(instruccion.getParametrosYArgumentos().size() == 1) {
+                String parametro = instruccion.getParametrosYArgumentos().get(0).getParametro();
             
-            link(instruccion.getArgumentoDelComando(), parametro);
+                link(instruccion.getArgumentoDelComando(), parametro);
+            } else {
+                System.out.println("Solo necesito un parametro");
+            }
         } else {
             String parametro = getParametro();
             
@@ -59,7 +63,7 @@ public class Link extends Comandos implements Redirecter {
         snippet = Ficheros.eliminarComillas(snippet);
         
         File snippetToLink = new File(Main.getUser().getEjecutandoseEnFile(), snippet);
-        if(snippetToLink.exists()) {
+        if(snippetToLink.isFile()) {
             
             pedirArchivosAsociados();
             
@@ -108,7 +112,7 @@ public class Link extends Comandos implements Redirecter {
         Config config = Configurations.getAssociatedFile(ArchivosAsociados.getConfigFileName(snippet));
         
         if(añadir.length != 0) {
-            config.addOrUpdateVariable(snippet.getName(), añadir);
+            config.addVariable(snippet.getName(), añadir);
         }
     }
     

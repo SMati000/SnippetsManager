@@ -23,6 +23,16 @@ public abstract class Comandos implements Redirecter {
         }
     }
     
+    private boolean needHelp() {
+        if(this.instruccion.hasParametro("-help")) {
+            this.help();
+            return true;
+        }
+        
+        return false;
+    }
+    
+    
     public Object pedirDatos(String mensaje, Object variable) {
         if(variable == null || variable.toString().isEmpty()) {
             Scanner in = new Scanner(System.in);
@@ -33,18 +43,10 @@ public abstract class Comandos implements Redirecter {
         
         return variable;
     }
-    
-    private boolean needHelp() {
-        if(this.instruccion.hasParametro("-help")) {
-            this.help();
-            return true;
-        }
-        
-        return false;
-    }
-    
     public void help() {
-        System.out.println("Algo no esta bien con su instruccion... \n"
-                + HELP);
+        System.out.println("\n____________________________________________________________________________\n"
+                + "Algo no esta bien con su instruccion... \n"
+                + HELP + "\n"
+                + "____________________________________________________________________________\n");
     }
 }
