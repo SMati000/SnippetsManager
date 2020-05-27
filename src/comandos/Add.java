@@ -4,8 +4,12 @@ import backend.Ficheros;
 import central_office.Configurations.Configurations;
 import static central_office.Configurations.SystemConfigDTO.DEFAULTDIRKEY;
 import central_office.Instruccion;
+import central_office.ParametrosYArgumentos;
+import central_office.Redirect;
 import general.Main;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Add extends Comandos implements Redirecter {
@@ -13,24 +17,11 @@ public class Add extends Comandos implements Redirecter {
     
     public Add(Instruccion instruccion) {
         super(instruccion);
-        
-        setSnippetAAgregar();
-    }
-
-    private void setSnippetAAgregar() {
-        try {
-            snippetAAgregar = new File(instruccion.getArgumentoDelComando());
-        } catch(Exception e) {
-            snippetAAgregar = null;
-        }
     }
 
     @Override
     public void redirecter() {
-        if(instruccion.hasParametro("-help")) {
-            help();
-            return;
-        }
+        setSnippetAAgregar();
         
         if(Main.getUser().hasStarted()) {
             final StringBuilder category = new StringBuilder();
@@ -38,6 +29,8 @@ public class Add extends Comandos implements Redirecter {
             instruccion.getParametrosYArgumentos().forEach(paramYArg -> {
                 if(paramYArg.getParametro().equals("-category")) {
                     category.append(paramYArg.getArgumento());
+                } else if(paramYArg.getParametro().equals("-associateFiles")) {
+                    associateFiles();
                 }
             });
             
@@ -46,6 +39,14 @@ public class Add extends Comandos implements Redirecter {
             System.out.println(DEBE_INICIAR_MSG);
         }
         
+    }
+
+    private void setSnippetAAgregar() {
+        try {
+            snippetAAgregar = new File(instruccion.getArgumentoDelComando());
+        } catch(Exception e) {
+            snippetAAgregar = new File("");
+        }
     }
     
     private void add(String name, String category) {
@@ -92,10 +93,16 @@ public class Add extends Comandos implements Redirecter {
         return name;
     }
     
+    public void associateFiles() {
+        Redirect redirecter = new Redirect();
+        
+        redirecter.redirecter(new Instruccion("link", "", new ArrayList<>()));
+    }
+    
     @Override
     public void help() {
         System.out.println("\n____________________________________________________________________________\n"
-                    + "add \"...\\ubicacion.txt\": Agregar un snipett\n"
+                    + "add \"...\\ubicacion.extencion\": Agregar un snipett\n"
                     + "    -category \"name\": agrega el snippet a esa categoria. -> Ej: add \"snippet.txt\" -category \"categoria\\subcategoria\"\n"
                     + "* Si no se especifica categoria, el snippet se agrega a la categoria \"default\".\n"
                     + "* CUANDO CUALQUIERA DE LOS NOMBRES LLEVAN ESPACIOS, DEBE PONER COMILLAS COMO SE MUESTRA EN EL EJEMPLO\n"

@@ -5,7 +5,7 @@ import central_office.Instruccion;
 import funcionalidades.dirlist.DirList;
 import java.util.Scanner;
 
-public abstract class Comandos {
+public abstract class Comandos implements Redirecter {
     protected final String HELP = "Consulte la ayuda especifica del comando o la ayuda general con el comando help";
     protected final String DEBE_INICIAR_MSG = "Debe iniciar para usar este comando. utilice el comando [start -help]";
     
@@ -18,6 +18,9 @@ public abstract class Comandos {
     
     public Comandos(Instruccion instruccion) {
         this.instruccion = instruccion;
+        if(!needHelp()) { 
+            this.redirecter();
+        }
     }
     
     public Object pedirDatos(String mensaje, Object variable) {
@@ -29,6 +32,15 @@ public abstract class Comandos {
         }
         
         return variable;
+    }
+    
+    private boolean needHelp() {
+        if(this.instruccion.hasParametro("-help")) {
+            this.help();
+            return true;
+        }
+        
+        return false;
     }
     
     public void help() {

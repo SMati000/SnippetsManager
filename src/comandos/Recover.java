@@ -16,11 +16,6 @@ public class Recover extends Comandos implements Redirecter {
 
     @Override
     public void redirecter() {
-        if(instruccion.hasParametro("-help")) {
-            help();
-            return;
-        }
-        
         if(Main.getUser().hasStarted()) {
             if(instruccion.hasArgumentoDelComando() || instruccion.hasParametros()) {
                 System.out.println(NO_NECESITO_NINGUN_PARAMETRO_EXTRA);

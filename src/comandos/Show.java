@@ -15,11 +15,6 @@ public class Show extends Comandos implements Redirecter {
 
     @Override
     public void redirecter() {
-        if(instruccion.hasParametro("-help")) {
-            help();
-            return;
-        }
-        
         if(Main.getUser().hasStarted()) {
             if(instruccion.hasArgumentoDelComando()) {
                 System.out.println(NO_NECESITO_ARGUMENTO_DEL_COMANDO);

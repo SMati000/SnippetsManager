@@ -16,11 +16,6 @@ public class Cd extends Comandos implements Redirecter {
 
     @Override
     public void redirecter() {
-        if(instruccion.hasParametro("-help")) {
-            help();
-            return;
-        }
-        
         if(Main.getUser().hasStarted()) {
             if(instruccion.hasParametros()) {
                 System.out.println(NO_NECESITO_PARAMETROS);

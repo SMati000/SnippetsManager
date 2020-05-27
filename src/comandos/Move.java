@@ -17,11 +17,6 @@ public class Move extends Comandos implements Redirecter {
 
     @Override
     public void redirecter() {
-        if(this.instruccion.hasParametro("-help")) {
-            help();
-            return;
-        }
-        
         if(Main.getUser().hasStarted()) {
             StringBuilder to = new StringBuilder();
             

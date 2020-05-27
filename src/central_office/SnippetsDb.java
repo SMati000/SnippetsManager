@@ -60,7 +60,7 @@ public class SnippetsDb {
             
                 Ficheros.copiarTodo(vieja, ubicacion);
                 Ficheros.deleteAll(vieja);
-                Configurations.SYSTEMCONFIG.updateVariable(DEFAULTDIRKEY, new File(ubicacion, NOMBRE).getCanonicalPath());
+                Configurations.SYSTEMCONFIG.addOrUpdateVariable(DEFAULTDIRKEY, new File(ubicacion, NOMBRE).getCanonicalPath());
                 
                 System.out.println("Movido con exito!");
             } else {

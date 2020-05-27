@@ -23,6 +23,9 @@ public class Redirect {
             case "help":
                 redirect = new Help(instrucciones);
                 break;
+            case "link":
+                redirect = new Link(instrucciones);
+                break;
             case "cd":
                 redirect = new Cd(instrucciones);
                 break;
@@ -69,10 +72,6 @@ public class Redirect {
                 System.out.println("Algo no esta bien con su instruccion... \n"
                 + "Consulte la ayuda especifica del comando o la ayuda general con el comando help");
                 break;
-        }
-        
-        if(redirect != null) { 
-            redirect.redirecter(); 
         }
     }
 }

@@ -15,11 +15,6 @@ public class Info extends Comandos implements Redirecter {
 
     @Override
     public void redirecter() {
-        if(instruccion.hasParametro("-help")) {
-            help();
-            return;
-        }
-        
         if(Main.getUser().hasStarted()) {
             
             if(instruccion.hasParametros() || instruccion.hasArgumentoDelComando()) {

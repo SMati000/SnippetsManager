@@ -26,11 +26,6 @@ public class Start extends Comandos implements Redirecter {
             
         } else {
             
-            if(this.instruccion.hasParametro("-help")) {
-                help();
-                return;
-            }
-            
             if(hasStarted) {
                 
                 if(this.instruccion.hasParametros()) {
@@ -62,7 +57,7 @@ public class Start extends Comandos implements Redirecter {
                 }
                 
             } else {
-                Configurations.SYSTEMCONFIG.addVariable(DEFAULTEDITORKEY, Vim.VIM.getAbsolutePath());
+                Configurations.SYSTEMCONFIG.addOrUpdateVariable(DEFAULTEDITORKEY, Vim.VIM.getAbsolutePath());
                 
                 Main.getUser().signIn();
                 

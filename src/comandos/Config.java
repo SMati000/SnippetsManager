@@ -13,11 +13,6 @@ public class Config extends Comandos implements Redirecter {
 
     @Override
     public void redirecter() {
-        if(instruccion.hasParametro("-help")) {
-            help();
-            return;
-        }
-        
         if(Main.getUser().hasStarted()) {
         
             if(instruccion.hasParametros()) {
@@ -36,7 +31,7 @@ public class Config extends Comandos implements Redirecter {
     }
     
     private void setDefaultProgram(String program) {
-        Configurations.SYSTEMCONFIG.updateVariable(DEFAULTEDITORKEY, program);
+        Configurations.SYSTEMCONFIG.addOrUpdateVariable(DEFAULTEDITORKEY, program);
         Main.getUser().setDefaultProgram(program);
     }
     

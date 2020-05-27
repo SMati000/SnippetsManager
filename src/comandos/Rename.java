@@ -13,11 +13,6 @@ public class Rename extends Comandos implements Redirecter {
 
     @Override
     public void redirecter() {
-        if(instruccion.hasParametro("-help")) {
-            help();
-            return;
-        }
-        
         if(Main.getUser().hasStarted()) {
             StringBuilder renameTo = new StringBuilder();
             

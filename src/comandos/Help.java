@@ -21,11 +21,6 @@ public class Help extends Comandos implements Redirecter {
 
     @Override
     public void redirecter() {
-        if(instruccion.hasParametro("-help")) {
-            help();
-            return;
-        }
-        
         if(instruccion.hasArgumentoDelComando()) {
             System.out.println(NO_NECESITO_ARGUMENTO_DEL_COMANDO);
         } else if(instruccion.hasParametros()) {

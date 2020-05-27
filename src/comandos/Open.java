@@ -16,11 +16,6 @@ public class Open extends Comandos implements Redirecter {
 
     @Override
     public void redirecter() {
-        if(this.instruccion.hasParametro("-help")) {
-            help();
-            return;
-        }
-        
         if(Main.getUser().hasStarted()) {
             StringBuilder program = new StringBuilder(Main.getUser().getDefaultProgram());
             

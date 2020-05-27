@@ -11,11 +11,6 @@ public class Clear extends Comandos implements Redirecter {
     
     @Override
     public void redirecter() {
-        if(instruccion.hasParametro("-help")) {
-            help();
-            return;
-        }
-        
         if(instruccion.hasParametros() || instruccion.hasArgumentoDelComando()) {
             System.out.println(NO_NECESITO_NINGUN_PARAMETRO_EXTRA);
         } else {

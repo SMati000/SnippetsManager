@@ -15,11 +15,6 @@ public class Delete extends Comandos implements Redirecter {
 
     @Override
     public void redirecter() {
-        if(this.instruccion.hasParametro("-help")) {
-            help();
-            return;
-        }
-        
         if(Main.getUser().hasStarted()) {
             if(this.instruccion.hasParametros()) {
                 System.out.println(NO_NECESITO_PARAMETROS);
