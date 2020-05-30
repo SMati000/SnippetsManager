@@ -1,14 +1,14 @@
 # SnippetsManager
 ## Contenidos
-* [Descripcion](https://github.com/SMati000/SnippetsManager/blob/master/README.md#descripcion)
-* [Instalacion](https://github.com/SMati000/SnippetsManager/blob/master/README.md#instalacion)
-* [Uso](https://github.com/SMati000/SnippetsManager/blob/master/README.md#uso)
-    * [Como inciar?](https://github.com/SMati000/SnippetsManager/blob/master/README.md#como-iniciar)
-    * [Ejemplos de comandos, parametros, y argumentos](https://github.com/SMati000/SnippetsManager/blob/master/README.md#ejemplos-de-algunos-posibles-comandos-parametros-y-argumentos)
-* [Ejemplos de instrucciones completas](https://github.com/SMati000/SnippetsManager/blob/master/README.md#ejemplos)
-* [Contribuciones](https://github.com/SMati000/SnippetsManager/blob/master/README.md#contribuciones)
-* [Creditos](https://github.com/SMati000/SnippetsManager/blob/master/README.md#creditos)
-* [Licensia](https://github.com/SMati000/SnippetsManager/blob/master/README.md#licensia)
+* [Descripcion](https://github.com/SMati000/SnippetsManager#descripcion)
+* [Instalacion](https://github.com/SMati000/SnippetsManager#instalacion)
+* [Uso](https://github.com/SMati000/SnippetsManager#uso)
+    * [Como inciar?](https://github.com/SMati000/SnippetsManager#como-iniciar)
+    * [Ejemplos de comandos, parametros, y argumentos](https://github.com/SMati000/SnippetsManager#ejemplos-de-algunos-posibles-comandos-parametros-y-argumentos)
+* [Ejemplos de instrucciones completas](https://github.com/SMati000/SnippetsManager#ejemplos)
+* [Contribuciones](https://github.com/SMati000/SnippetsManager#contribuciones)
+* [Creditos](https://github.com/SMati000/SnippetsManager#creditos)
+* [Licencia](https://github.com/SMati000/SnippetsManager#licencia)
 
 ## Descripcion
 Snippets Manager es un programa para windows, sin interfaz grafica, se maneja a traves de comandos.  
@@ -29,7 +29,7 @@ y tambien permite hacer backups, además, tiene un comando de ayuda para ver tan
 grafica mas comoda, la ayuda puede verse especifica para cada comando, y tambien de forma general.
 
 ## Instalacion
-.........................................................................................
+Por ahora, solo puede usarse el programa ejecutandolo desde la consola de comandos a traves del .jar que se encuentra en la carpeta dist. **_Antes, debe copiar la carpeta "recursos" y pegarla dentro de "dist". Si no hace esto, hay funciones que no funcionaran_**
 
 ## Uso
 Como se aclaro en la descripcion, el programa funciona con **comandos**. Estos comandos pueden necesitar **argumentos** para funcionar.  
@@ -54,7 +54,8 @@ add "ubicacion": permite añadir snippets a la SnippetsDB.
 * Para inciar por primera vez en el programa, este cuenta con un comando que te permitira configurar dos datos esenciales para funcionar:  
   1. Donde se almacenaran los snippets  
   2. Si tendra o no contraseña cada vez que se inicie  
-El comando es `start`, al utilizarlo, el programa solicitara los datos antes mencionados, que luego podran ser modificados utilizando este mismo comando con los parametros correspondientes. *(utilizar el comando `start -help` para ver la ayuda)*  
+El comando es `start`, al utilizarlo, el programa solicitara los datos antes mencionados, que luego podran ser modificados utilizando este mismo comando con los parametros correspondientes. *(utilizar el comando `start -help` para ver la ayuda)* 
+* Con el comando `help`, podra ver la ayuda de los principales comandos, no de todos. para ver una lista de los demas comandos, use el comando `help -else` 
 * Para añadir snippets a la *SnippetsDB*, se utiliza el comando `add "ubicacion del snippet"`. Si desea guardar el snippet en alguna categoria particular, utilice el parametro `-category "categoria"`, si no especifica una categoria, el snippet se guardara en *\SnippetsDB\Default*  
 * Para crear categorias y subcategorias, utilice el comando `new -cat "nombre de la nueva cat"`  
 * Para navegar dentro de la *SnippetDB*, utilice el comando `cd`, asi solo mostrara la ubicacion actual.  
@@ -98,6 +99,8 @@ Cualquier clase de contribucion es bienvenida
 @SMati000
 
 ## Licencia
-The Snippets Manager Project is distributed under the MIT License.
+*The Snippets Manager Project is distributed under the MIT License.*  
+*El Proyecto del Snippet Manager es distribuido bajo la licencia MIT*
 
-See [license](https://github.com/SMati000/SnippetsManager/blob/master/LICENSE.txt) for more information.
+See [license](https://github.com/SMati000/SnippetsManager/blob/master/LICENSE.txt) for more information.  
+Vea la [licencia](https://github.com/SMati000/SnippetsManager/blob/master/LICENSE.txt) para mas informacion.

@@ -103,7 +103,7 @@ public class Help extends Comandos implements Redirecter {
     }
 
     private void listCommands() {
-        String[] lista = {"[rename]"};
+        String[] lista = {"[rename]", "[link]", "[af]", "[vim]"};
         
         System.out.println("\n______________________________________________");
         

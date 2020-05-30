@@ -23,5 +23,4 @@ public class Main {
     public static void setUser(User user) {
         Main.user = user;
     }
-    
 }
