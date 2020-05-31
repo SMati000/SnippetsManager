@@ -29,7 +29,7 @@ y tambien permite hacer backups, además, tiene un comando de ayuda para ver tan
 grafica mas comoda, la ayuda puede verse especifica para cada comando, y tambien de forma general.
 
 ## Instalacion
-Por ahora, solo puede usarse el programa ejecutandolo desde la consola de comandos a traves del .jar que se encuentra en la carpeta dist. **_Antes, debe copiar la carpeta "recursos" y pegarla dentro de "dist". Si no hace esto, hay funciones que no funcionaran_**
+Por ahora, solo puede usarse el programa ejecutandolo desde la consola de comandos a traves del .jar que se encuentra en la carpeta dist. **_Antes, debe copiar la carpeta "recursos", y pegarla dentro de "dist". Si no hace esto, hay funciones que no andaran_**
 
 ## Uso
 Como se aclaro en la descripcion, el programa funciona con **comandos**. Estos comandos pueden necesitar **argumentos** para funcionar.  

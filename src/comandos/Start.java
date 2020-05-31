@@ -8,6 +8,7 @@ import central_office.SnippetsDb;
 import general.Main;
 import java.io.File;
 import java.util.Scanner;
+import user.User;
 
 public class Start extends Comandos implements Redirecter {
     private final boolean hasStarted;
@@ -57,7 +58,7 @@ public class Start extends Comandos implements Redirecter {
                 }
                 
             } else {
-                Configurations.SYSTEMCONFIG.addOrUpdateVariable(DEFAULTEDITORKEY, Vim.VIM.getAbsolutePath());
+                Configurations.SYSTEMCONFIG.addOrUpdateVariable(DEFAULTEDITORKEY, "c:\\windows\\system32\\notepad.exe");
                 
                 Main.getUser().signIn();
                 
@@ -67,6 +68,8 @@ public class Start extends Comandos implements Redirecter {
                 SnippetsDb snippetsDb = new SnippetsDb(new File(Ficheros.eliminarComillas(in.nextLine())));
                 
                 snippetsDb.crear();
+                
+                Main.setUser(new User());
             }
             
         }

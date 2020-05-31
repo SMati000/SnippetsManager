@@ -2,7 +2,6 @@ package comandos;
 
 import backend.Ficheros;
 import central_office.Instruccion;
-import static comandos.Vim.VIM;
 import funcionalidades.dirlist.*;
 import general.Main;
 import java.io.File;
@@ -54,9 +53,9 @@ public class Open extends Comandos implements Redirecter {
                 if(new File(program).isFile()) {
                     Runtime runtime = Runtime.getRuntime();
                     
-                    Process process = runtime.exec(program + " " + snippet);
+                    Process process = runtime.exec(program + " \"" + snippet + "\"");
                 } else {
-                    String comando = "\"" + VIM.getCanonicalPath() + "\" \"" + snippet.getCanonicalPath() + "\"";
+                    String comando = "\"" + "C:\\windows\\system32\\notepad.exe" + "\" \"" + snippet.getCanonicalPath() + "\"";
                     
                     new ProcessBuilder(comando).inheritIO().start().waitFor();
                 }

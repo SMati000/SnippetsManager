@@ -38,9 +38,6 @@ public class Redirect {
             case "open":
                 redirect = new Open(instrucciones);
                 break;
-            case "vim":
-                redirect = new Vim(instrucciones);
-                break;
             case "delete":
                 redirect = new Delete(instrucciones);
                 break;
