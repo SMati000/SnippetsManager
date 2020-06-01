@@ -6,14 +6,15 @@ import static central_office.Configurations.SystemConfigDTO.DEFAULTDIRKEY;
 import central_office.Instruccion;
 import central_office.ParametrosYArgumentos;
 import central_office.Redirect;
-import general.Main;
+
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
+import sun.security.krb5.Confounder;
 
 public class Add extends Comandos implements Redirecter {
     private File snippetAAgregar;
+    private boolean associateFiles = false;
     
     public Add(Instruccion instruccion) {
         super(instruccion);
@@ -23,14 +24,14 @@ public class Add extends Comandos implements Redirecter {
     public void redirecter() {
         setSnippetAAgregar();
         
-        if(Main.getUser().hasStarted()) {
+        if(user.hasStarted()) {
             final StringBuilder category = new StringBuilder();
             
             instruccion.getParametrosYArgumentos().forEach(paramYArg -> {
                 if(paramYArg.getParametro().equals("-category")) {
                     category.append(paramYArg.getArgumento());
-                } else if(paramYArg.getParametro().equals("-associateFiles")) {
-                    associateFiles();
+                } else if(paramYArg.getParametro().equals("-af")) {
+                    associateFiles = true;
                 }
             });
             
@@ -55,7 +56,7 @@ public class Add extends Comandos implements Redirecter {
         
         if(snippetAAgregar.exists()) {
             
-            File agregarA = new File(Main.getUser().getEjecutandoseEnFile(), category);
+            File agregarA = new File(user.getEjecutandoseEnFile(), category);
             
             File snippetsDb = new File(Configurations.SYSTEMCONFIG.readVariable(DEFAULTDIRKEY).toString());
             
@@ -68,6 +69,7 @@ public class Add extends Comandos implements Redirecter {
                 Ficheros.CopiarFichero(snippetAAgregar, new File(agregarA, name));
                 Ficheros.deleteFile("Eliminar archivo original", snippetAAgregar);
                 
+                associateFiles(agregarA.getAbsolutePath().replace(Configurations.SYSTEMCONFIG.readVariable(DEFAULTDIRKEY).toString() + "\\", "") + "\\" + name);
             } else {
                 System.out.println("No encontramos la ubicacion donde quiere agregar el archivo");
             }
@@ -93,10 +95,15 @@ public class Add extends Comandos implements Redirecter {
         return name;
     }
     
-    public void associateFiles() {
-        Redirect redirecter = new Redirect();
+    public void associateFiles(String snippet) {
+        if(associateFiles) {
+            Redirect redirecter = new Redirect();
         
-        redirecter.redirecter(new Instruccion("link", "", new ArrayList<>()));
+            ArrayList<ParametrosYArgumentos> temp = new ArrayList();
+            temp.add(new ParametrosYArgumentos("-add", null));
+            
+            redirecter.redirecter(new Instruccion("link", snippet, temp));
+        }
     }
     
     @Override
@@ -104,6 +111,7 @@ public class Add extends Comandos implements Redirecter {
         System.out.println("\n____________________________________________________________________________\n"
                     + "add \"...\\ubicacion.extencion\": Agregar un snipett\n"
                     + "    -category \"name\": agrega el snippet a esa categoria. -> Ej: add \"snippet.txt\" -category \"categoria\\subcategoria\"\n"
+                    + "     -af: permite asocar archivos al snippet agregado"
                     + "* Si no se especifica categoria, el snippet se agrega a la categoria \"default\".\n"
                     + "* CUANDO CUALQUIERA DE LOS NOMBRES LLEVAN ESPACIOS, DEBE PONER COMILLAS COMO SE MUESTRA EN EL EJEMPLO\n"
                     + "____________________________________________________________________________");

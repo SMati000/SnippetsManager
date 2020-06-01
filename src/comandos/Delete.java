@@ -15,13 +15,13 @@ public class Delete extends Comandos implements Redirecter {
 
     @Override
     public void redirecter() {
-        if(Main.getUser().hasStarted()) {
+        if(user.hasStarted()) {
             if(this.instruccion.hasParametros()) {
                 System.out.println(NO_NECESITO_PARAMETROS);
             } else if(instruccion.hasArgumentoDelComando()) {
                 delete(this.instruccion.getArgumentoDelComando());
             } else {
-                dirList = new DirListAll();
+                dirList = new DirListAll(user);
                 
                 delete(dirList.ask());
             }
@@ -33,9 +33,9 @@ public class Delete extends Comandos implements Redirecter {
     private void delete(String toDelete) {
         toDelete = pedirDatos("Eliminar> ", toDelete).toString();
         
-        File delete = new File(Main.getUser().getEjecutandoseEnFile(), Ficheros.eliminarComillas(toDelete));
+        File delete = new File(user.getEjecutandoseEnFile(), Ficheros.eliminarComillas(toDelete));
         
-        if(delete.exists() && !delete.equals(Main.getUser().getEjecutandoseEnFile())) {
+        if(delete.exists() && !delete.equals(user.getEjecutandoseEnFile())) {
             
             if(delete.isFile()) {
                 

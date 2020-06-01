@@ -3,9 +3,9 @@ package comandos;
 import backend.Ficheros;
 import central_office.Configurations.Configurations;
 import static central_office.Configurations.SystemConfigDTO.DEFAULTEDITORKEY;
+import central_office.InicioDelPrograma;
 import central_office.Instruccion;
 import central_office.SnippetsDb;
-import general.Main;
 import java.io.File;
 import java.util.Scanner;
 import user.User;
@@ -15,7 +15,7 @@ public class Start extends Comandos implements Redirecter {
     
     public Start(Instruccion instruccion) {
         super(instruccion);
-        this.hasStarted = Main.getUser().hasStarted();
+        this.hasStarted = user.hasStarted();
     }
 
     @Override
@@ -39,7 +39,7 @@ public class Start extends Comandos implements Redirecter {
                                     SnippetsDb.defaultSnippetsDb().mover(objeto.getArgumento());
                                     break;
                                 case "-newpassword":
-                                    Main.getUser().signIn();
+                                    user.signIn();
                                     break;
                                 default:
                                     System.out.println("El parametro " + objeto.getParametro() + " no existe");
@@ -60,7 +60,7 @@ public class Start extends Comandos implements Redirecter {
             } else {
                 Configurations.SYSTEMCONFIG.addOrUpdateVariable(DEFAULTEDITORKEY, "c:\\windows\\system32\\notepad.exe");
                 
-                Main.getUser().signIn();
+                user.signIn();
                 
                 Scanner in = new Scanner(System.in);
                 
@@ -69,7 +69,7 @@ public class Start extends Comandos implements Redirecter {
                 
                 snippetsDb.crear();
                 
-                Main.setUser(new User());
+                InicioDelPrograma.setUser(new User());
             }
             
         }

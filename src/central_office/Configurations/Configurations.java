@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.IOException;
 
 public final class Configurations {
-    protected static final File CONFIG = new File(".", "configs");
+    public static final File CONFIG = new File(".", "configs");
     public static final File SYSTEMCONFIGFILE = new File(CONFIG, "system.properties");
     protected static final File ASSOCIATEDFILES = new File(CONFIG, "associated Files");
     

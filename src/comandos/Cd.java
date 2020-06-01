@@ -16,11 +16,11 @@ public class Cd extends Comandos implements Redirecter {
 
     @Override
     public void redirecter() {
-        if(Main.getUser().hasStarted()) {
+        if(user.hasStarted()) {
             if(instruccion.hasParametros()) {
                 System.out.println(NO_NECESITO_PARAMETROS);
             } if(!instruccion.hasArgumentoDelComando()) {
-                String currentLoc = Main.getUser().getEjecutandoseEn().substring(1, (Main.getUser().getEjecutandoseEn().length()-2));
+                String currentLoc = user.getEjecutandoseEn().substring(1, (user.getEjecutandoseEn().length()-2));
                 
                 System.out.println("Te encuentras en: " + currentLoc);
             } else {
@@ -40,7 +40,7 @@ public class Cd extends Comandos implements Redirecter {
                 goHome();
                 break;
             default:
-                goTo(new File(Main.getUser().getEjecutandoseEnFile(), Ficheros.eliminarComillas(arg)));
+                goTo(new File(user.getEjecutandoseEnFile(), Ficheros.eliminarComillas(arg)));
                 break;
         }
     }
@@ -54,11 +54,11 @@ public class Cd extends Comandos implements Redirecter {
     }
     
     private void goBack() {
-        if(Main.getUser().getEjecutandoseEnFile().getName().equals("SnippetsDB")) {
+        if(user.getEjecutandoseEnFile().getName().equals("SnippetsDB")) {
             return;
         }
         
-        InicioDelPrograma.cambiarLugarDeEjecucionA(Main.getUser().getEjecutandoseEnFile().getParentFile());
+        InicioDelPrograma.cambiarLugarDeEjecucionA(user.getEjecutandoseEnFile().getParentFile());
     }
     
     private void goHome() {

@@ -13,7 +13,7 @@ public class Config extends Comandos implements Redirecter {
 
     @Override
     public void redirecter() {
-        if(Main.getUser().hasStarted()) {
+        if(user.hasStarted()) {
         
             if(instruccion.hasParametros()) {
                 instruccion.getParametrosYArgumentos().forEach(paramYArg -> {
@@ -32,7 +32,7 @@ public class Config extends Comandos implements Redirecter {
     
     private void setDefaultProgram(String program) {
         Configurations.SYSTEMCONFIG.addOrUpdateVariable(DEFAULTEDITORKEY, program);
-        Main.getUser().setDefaultProgram(program);
+        user.setDefaultProgram(program);
     }
     
     @Override

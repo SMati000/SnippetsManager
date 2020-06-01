@@ -51,7 +51,7 @@ public class Redirect {
                 redirect = new Export(instrucciones);
                 break;
             case "backup":
-                redirect = new Backup(instrucciones);
+                redirect = new BackupComando(instrucciones);
                 break;
             case "recover":
                 redirect = new Recover(instrucciones);

@@ -43,7 +43,8 @@ PARA CAMBIAR LOS YA ESTABLECIDOS, GRACIAS :)
 > add "...\ubicacion.txt": Agregar un snipett
     -category "name": agrega el snippet a esa categoria, si no se especifica categoria,
     el snippet se agrega a la categoria "default". Si quieres agregar el snippet
-    dentro de una subcategoria, solo pon -add "ubicacion.txt" /category "categoria/sub categoria"- (sin los guiones)
+    dentro de una subcategoria, solo pon add "ubicacion.txt" -category "categoria/sub categoria"
+    -af: permite asocar archivos al snippet agregado
     CUANDO CUALQUIERA DE LOS NOMBRES LLEVAN ESPACIOS, DEBE PONER COMILLAS COMO SE MUESTRA EN EL EJEMPLO
 
 > open "categoria/snippet.txt": este comando abrira el snippet indicado para que pueda verlo o editarlo

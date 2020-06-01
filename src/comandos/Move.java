@@ -17,7 +17,7 @@ public class Move extends Comandos implements Redirecter {
 
     @Override
     public void redirecter() {
-        if(Main.getUser().hasStarted()) {
+        if(user.hasStarted()) {
             StringBuilder to = new StringBuilder();
             
             if(this.instruccion.hasParametros()) {
@@ -35,7 +35,7 @@ public class Move extends Comandos implements Redirecter {
                 move(this.instruccion.getArgumentoDelComando(), to.toString());
             
             } else {
-                dirList = new DirListAll();
+                dirList = new DirListAll(user);
                 move(dirList.ask(), to.toString());
             }
             
@@ -47,7 +47,7 @@ public class Move extends Comandos implements Redirecter {
     private void move(String ubicacion, String to) {
         ubicacion = pedirDatos("Snippet o Categoria a mover> ", ubicacion).toString();
         
-        File mover = new File(Main.getUser().getEjecutandoseEnFile(), Ficheros.eliminarComillas(ubicacion));
+        File mover = new File(user.getEjecutandoseEnFile(), Ficheros.eliminarComillas(ubicacion));
         
         if(mover.exists()) {
             to = pedirDatos("No ponga nada para mover a la ruta principal de la Snippets Db\nMover a> ", to).toString();

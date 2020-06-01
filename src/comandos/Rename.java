@@ -13,7 +13,7 @@ public class Rename extends Comandos implements Redirecter {
 
     @Override
     public void redirecter() {
-        if(Main.getUser().hasStarted()) {
+        if(user.hasStarted()) {
             StringBuilder renameTo = new StringBuilder();
             
             if(instruccion.hasParametros()) {
@@ -30,7 +30,7 @@ public class Rename extends Comandos implements Redirecter {
             if(instruccion.hasArgumentoDelComando()) {
                 rename(instruccion.getArgumentoDelComando(), renameTo.toString());
             } else {
-                dirList = new DirListAll();
+                dirList = new DirListAll(user);
                 rename(dirList.ask(), renameTo.toString());
             }
         } else {
@@ -43,7 +43,7 @@ public class Rename extends Comandos implements Redirecter {
         renameTo = pedirDatos("Nombre nuevo> ", renameTo).toString();
         
         try {
-            File archivoARenombrar = new File(Main.getUser().getEjecutandoseEnFile(), archivo);
+            File archivoARenombrar = new File(user.getEjecutandoseEnFile(), archivo);
             
             if(archivoARenombrar.exists() && !archivo.isEmpty()) {
                 archivoARenombrar.renameTo(new File(archivoARenombrar.getParent(), renameTo));

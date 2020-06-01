@@ -1,15 +1,21 @@
 package funcionalidades.dirlist;
 
-import general.Main;
 import java.io.File;
+import user.User;
 
 public class DirListAll implements DirList {
+    private final User user;
+    
+    public DirListAll(User user) {
+        this.user = user;
+    }
+    
     @Override
     public void show() {
-       String[] rutas = Main.getUser().getEjecutandoseEnFile().list();
+       String[] rutas = user.getEjecutandoseEnFile().list();
         
         for (int i = 0; i < rutas.length; i++) {
-            if (new File(Main.getUser().getEjecutandoseEnFile(), rutas[i]).isDirectory()) {
+            if (new File(user.getEjecutandoseEnFile(), rutas[i]).isDirectory()) {
                 System.out.println(i + "> " + rutas[i]);
             } else {
                 System.out.println(i + ". " + rutas[i]);

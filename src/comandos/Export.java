@@ -15,7 +15,7 @@ public class Export extends Comandos implements Redirecter {
 
     @Override
     public void redirecter() {
-        if(Main.getUser().hasStarted()) {
+        if(user.hasStarted()) {
             StringBuilder to = new StringBuilder();
             
             if(instruccion.hasParametros()) {
@@ -32,7 +32,7 @@ public class Export extends Comandos implements Redirecter {
                 export(instruccion.getArgumentoDelComando(), to.toString());
                 
             } else {
-                dirList = new DirListAll();
+                dirList = new DirListAll(user);
                 export(dirList.ask(), to.toString());
             }
             
@@ -46,7 +46,7 @@ public class Export extends Comandos implements Redirecter {
             
         ruta = pedirDatos("Exportar> ", ruta).toString();
         
-        File exportar = new File(Main.getUser().getEjecutandoseEnFile(), Ficheros.eliminarComillas(ruta));
+        File exportar = new File(user.getEjecutandoseEnFile(), Ficheros.eliminarComillas(ruta));
         
         if(exportar.exists()) {
             

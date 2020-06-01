@@ -62,9 +62,9 @@ public class Link extends Comandos implements Redirecter {
         snippet = pedirDatos("Snippet> ", snippet).toString();
         snippet = Ficheros.eliminarComillas(snippet);
         
-        File snippetToLink = new File(Main.getUser().getEjecutandoseEnFile(), snippet);
+        File snippetToLink = new File(user.getEjecutandoseEnFile(), snippet);
+        
         if(snippetToLink.isFile()) {
-            
             pedirArchivosAsociados();
             
             if(parametro.equalsIgnoreCase("-add")) {

@@ -5,9 +5,8 @@ import backend.config.Config;
 import central_office.Configurations.Configurations;
 import central_office.Instruccion;
 import funcionalidades.ArchivosAsociados;
-import funcionalidades.dirlist.DirList;
 import funcionalidades.dirlist.DirListFilesOnly;
-import general.Main;
+
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
@@ -21,7 +20,7 @@ public class AF extends Comandos implements Redirecter { // la clase se llama AF
 
     @Override
     public void redirecter() {
-        if(Main.getUser().hasStarted()) {
+        if(user.hasStarted()) {
             String parametro;
             String argumento = null;
                     
@@ -72,14 +71,14 @@ public class AF extends Comandos implements Redirecter { // la clase se llama AF
     
     private void list(String snippet) {
         if(snippet == null || snippet.isEmpty()) {
-            DirList list = new DirListFilesOnly();
-            snippet = list.ask();
+            dirList = new DirListFilesOnly(user);
+            snippet = dirList.ask();
         }
         
         snippet = pedirDatos("Snippet> ", snippet).toString();
         snippet = Ficheros.eliminarComillas(snippet);
         
-        File snippetFile = new File(Main.getUser().getEjecutandoseEnFile(), snippet);
+        File snippetFile = new File(user.getEjecutandoseEnFile(), snippet);
         
         if(snippetFile.isFile()) {
             
@@ -119,16 +118,18 @@ public class AF extends Comandos implements Redirecter { // la clase se llama AF
         Scanner in = new Scanner(System.in);
         int indice = -1;
             
-        System.out.print("Si desea abrir alguno de los archivos, indique el indice correspondiente.\n"
+        if(archivos.length != 0) {
+            System.out.print("Si desea abrir alguno de los archivos, indique el indice correspondiente.\n"
                 + "Si no, escriba '-1' para salir de este menu\n"
                 + "> ");
 
-        try {
-            indice = in.nextInt();
-        } catch(Exception e) {}
+            try {
+                indice = in.nextInt();
+            } catch(Exception e) {}
 
-        if(indice > -1 && indice < archivos.length) {
-            return indice;
+            if(indice > -1 && indice < archivos.length) {
+                return indice;
+            }
         }
         
         return -1;

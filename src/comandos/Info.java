@@ -15,7 +15,7 @@ public class Info extends Comandos implements Redirecter {
 
     @Override
     public void redirecter() {
-        if(Main.getUser().hasStarted()) {
+        if(user.hasStarted()) {
             
             if(instruccion.hasParametros() || instruccion.hasArgumentoDelComando()) {
                 System.out.println(NO_NECESITO_NINGUN_PARAMETRO_EXTRA);
@@ -48,7 +48,7 @@ public class Info extends Comandos implements Redirecter {
             System.out.println("Snippets DB: no encontrado");
         }
         
-        System.out.println("Editor por defecto: " + Main.getUser().getDefaultProgram());
+        System.out.println("Editor por defecto: " + user.getDefaultProgram());
 
         System.out.println("------------------------------------------------------");
     }

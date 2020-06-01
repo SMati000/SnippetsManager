@@ -4,19 +4,19 @@ import backend.Ficheros;
 import central_office.Configurations.Configurations;
 import static central_office.Configurations.SystemConfigDTO.DEFAULTDIRKEY;
 import central_office.Instruccion;
-import general.Main;
+import user.Backup;
 import java.io.File;
 import java.util.Scanner;
 
-public class Backup extends Comandos implements Redirecter {
+public class BackupComando extends Comandos implements Redirecter {
 
-    public Backup(Instruccion instruccion) {
+    public BackupComando(Instruccion instruccion) {
         super(instruccion);
     }
 
     @Override
     public void redirecter() {
-        if(Main.getUser().hasStarted()) {
+        if(user.hasStarted()) {
             
             if(instruccion.hasArgumentoDelComando() && instruccion.hasParametros()) {
                 System.out.println("Error de sintaxis, este comando no permite utilizar\n"
@@ -59,7 +59,7 @@ public class Backup extends Comandos implements Redirecter {
             
         if(backupDir.exists() && backupDir.isDirectory()) {
             backupDir = new File(backupDir, "Backup");
-            user.Backup.backUp(backupDir);
+            Backup.backUp(user, backupDir);
             System.out.println("Creado con Exito!");
         } else {
             System.out.println("Ese directorio no existe. Reviselo con cuidado y vuelva a intentarlo");

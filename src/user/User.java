@@ -5,7 +5,6 @@ import static central_office.Configurations.SystemConfigDTO.DEFAULTDIRKEY;
 import static central_office.Configurations.SystemConfigDTO.DEFAULTEDITORKEY;
 import central_office.InicioDelPrograma;
 import central_office.SnippetsDb;
-import general.Main;
 import java.io.Console;
 import java.io.File;
 import java.util.Scanner;
@@ -30,7 +29,7 @@ public final class User {
     }
     
     public void login() {        
-        if(!Main.getUser().hasStarted()) { 
+        if(!this.hasStarted()) { 
             InicioDelPrograma.inicioDelPrograma();
         } else if(!contraseña.verifyPassword(Configurations.SYSTEMCONFIG, "-1")) {
             String password = "";
@@ -49,7 +48,7 @@ public final class User {
             if(contraseña.verifyPassword(Configurations.SYSTEMCONFIG, password)) {
                 SnippetsDb snippetsDb = SnippetsDb.defaultSnippetsDb();
                 snippetsDb.comprobarLugarDeAlmacenamiento();
-                Backup.backUp(Backup.getBackupDir());
+                Backup.backUp(this, Backup.getBackupDir());
                 InicioDelPrograma.inicioDelPrograma();
             } else {
                 System.out.println("Contraseña incorrecta, intente de nuevo");
@@ -58,7 +57,7 @@ public final class User {
         } else {
             SnippetsDb snippetsDb = SnippetsDb.defaultSnippetsDb();
             snippetsDb.comprobarLugarDeAlmacenamiento();
-            Backup.backUp(Backup.getBackupDir());
+            Backup.backUp(this, Backup.getBackupDir());
             InicioDelPrograma.inicioDelPrograma();
         }
     }

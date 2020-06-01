@@ -19,7 +19,7 @@ public class New extends Comandos implements Redirecter {
             return;
         }
         
-        if(Main.getUser().hasStarted()) {
+        if(user.hasStarted()) {
             if(instruccion.hasParametros()) {
                 
                 instruccion.getParametrosYArgumentos().forEach(paramYArg -> {
@@ -51,7 +51,7 @@ public class New extends Comandos implements Redirecter {
             cat = in.nextLine();
         }
         
-        File category = new File(Main.getUser().getEjecutandoseEnFile(), Ficheros.eliminarComillas(cat));
+        File category = new File(user.getEjecutandoseEnFile(), Ficheros.eliminarComillas(cat));
         
         if(!category.exists()) {
             try {

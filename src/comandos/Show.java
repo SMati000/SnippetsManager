@@ -15,7 +15,7 @@ public class Show extends Comandos implements Redirecter {
 
     @Override
     public void redirecter() {
-        if(Main.getUser().hasStarted()) {
+        if(user.hasStarted()) {
             if(instruccion.hasArgumentoDelComando()) {
                 System.out.println(NO_NECESITO_ARGUMENTO_DEL_COMANDO);
                 return;
@@ -45,10 +45,10 @@ public class Show extends Comandos implements Redirecter {
     }
     
     private void showThis() {
-        String[] rutas = Main.getUser().getEjecutandoseEnFile().list();
+        String[] rutas = user.getEjecutandoseEnFile().list();
         
         for (String ruta : rutas) {
-            if (new File(Main.getUser().getEjecutandoseEnFile(), ruta).isDirectory()) {
+            if (new File(user.getEjecutandoseEnFile(), ruta).isDirectory()) {
                 System.out.println("> " + ruta);
             } else {
                 System.out.println(ruta);

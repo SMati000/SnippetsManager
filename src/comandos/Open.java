@@ -3,7 +3,7 @@ package comandos;
 import backend.Ficheros;
 import central_office.Instruccion;
 import funcionalidades.dirlist.*;
-import general.Main;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -15,8 +15,8 @@ public class Open extends Comandos implements Redirecter {
 
     @Override
     public void redirecter() {
-        if(Main.getUser().hasStarted()) {
-            StringBuilder program = new StringBuilder(Main.getUser().getDefaultProgram());
+        if(user.hasStarted()) {
+            StringBuilder program = new StringBuilder(user.getDefaultProgram());
             
             if(this.instruccion.hasParametros()) {
                 instruccion.getParametrosYArgumentos().forEach(paramYArg -> {
@@ -29,7 +29,7 @@ public class Open extends Comandos implements Redirecter {
             if(instruccion.hasArgumentoDelComando()) {
                 open(this.instruccion.getArgumentoDelComando(), program.toString());
             } else {
-                dirList = new DirListFilesOnly();
+                dirList = new DirListFilesOnly(user);
                 open(dirList.ask(), program.toString());
             }
             
@@ -44,7 +44,7 @@ public class Open extends Comandos implements Redirecter {
         
         file = Ficheros.eliminarComillas(file);
 
-        File snippet = new File(Main.getUser().getEjecutandoseEnFile(), file);
+        File snippet = new File(user.getEjecutandoseEnFile(), file);
 
         if(snippet.exists() && snippet.isFile()) {
             
